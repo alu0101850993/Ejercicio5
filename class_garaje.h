@@ -1,2 +1,0 @@
-// Clase Garaje donde vamos a crear el objeto tipo garaje que contenga los documentos catastrales
-// junto con su nombre y su posicion, se sobrecargará el operador de insercion (>>) y el de mostrar por pantalla (<<)
