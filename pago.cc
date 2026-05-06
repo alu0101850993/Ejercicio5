@@ -1,5 +1,4 @@
 #include "pago.h"
-#include "notificacion.h"
 
 bool Pago::comprobarSaldo(const Usuario& usuario, float cantidad) {
   return usuario.getSaldo() >= cantidad;
