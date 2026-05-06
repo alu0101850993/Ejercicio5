@@ -1,7 +1,7 @@
 #ifndef PAGO_H_
 #define PAGO_H_
 
-#include <class_user.h>
+#include "class_user.h"
 
 class Pago {
  public:
