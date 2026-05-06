@@ -10,25 +10,29 @@ su numero de tarjeta bancaria para realizar pagos  y su contraseña de inicio de
 
 class User {
     public:
-    User() : nombre_(""), correo_(""), password_("") {}
+    User() : nombre_(""), correo_(""), password_(""), telefono_(""), rol_(""), saldo_(0.0) {}
     User(std::string nombre, std::string correo, std::string password, std::string telefono, std::string rol, double saldo) : 
-    nombre_(nombre), correo_(correo), password_(password), telefono_(telefono), rol_(rol), saldo_(saldo) {}
+    nombre_(nombre), correo_(correo), password_(password), telefono_(telefono), rol_(rol), saldo_(saldo) {
+        if(saldo < 0){
+            saldo_ = 0;
+        }
+    }
     
-    std::string getCorreo() const;
-    std::string getNombre() const;
-    std::string getTelefono() const;
-    std::string getPassword() const;
-    std::string getRol() const;
-    double getSaldo() const;
+    std::string getCorreo() const { return correo_;}
+    std::string getNombre() const { return nombre_;}
+    std::string getTelefono() const { return telefono_;}
+    std::string getPassword() const { return password_;}
+    std::string getRol() const { return rol_;}
+    double getSaldo() const { return saldo_;}
 
-    void setNombre(std::string nombre);
-    void setTelefono(std::string telefono);
-    void setPassword(std::string password);
-    void setSaldo(double saldo);
+    void setNombre(std::string nombre) { nombre_ = nombre;}
+    void setTelefono(std::string telefono) {telefono_ = telefono;}
+    void setPassword(std::string password) {password_ = password;}
+    void setSaldo(double saldo) { saldo_ = (saldo < 0) ? 0 : saldo;}
 
-    void mostrarPerfil() const;
     void ingresarSaldo(double cantidad);
     bool retirarSaldo(double cantidad);
+    void mostrarPerfil() const;
 
     private:
       std::string nombre_;
