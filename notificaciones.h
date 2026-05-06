@@ -16,4 +16,5 @@ class Mensaje {
 
 std::ostream& operator<<(std::ostream& os, const Mensaje &mensaje) {
   os << "Notificación entrante [" << mensaje.GetFecha() << "] : " << mensaje.GetContenido() << std::endl;
+  return os;
 }   

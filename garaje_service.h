@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 #include "garaje.h"
+#include "class_user.h"
+#include "pago.h"
 
 class GarajeService {
  private:
@@ -15,9 +17,9 @@ class GarajeService {
   GarajeService();
 
   void buscarGarajes() const;
-  bool reservarPlaza(std::string idNombre, int tiempo, std::string idUsuarioLogueado);
+  bool reservarPlaza(std::string idNombre, int tiempo, User& conductor, User& propietario);
   void altaGaraje();
-  void configurarGaraje(std::string idNombre, double nuevoPrecio, bool nuevaDisponibilidad, std::string idUsuarioLogueado);
+  void configurarGaraje(std::string idNombre, double nuevoPrecio, bool nuevaDisponibilidad, const User& propietario);
 };
 
-#endif 
+#endif
