@@ -1,10 +1,10 @@
 #include "pago.h"
 
-bool Pago::comprobarSaldo(const Usuario& usuario, float cantidad) {
+bool Pago::comprobarSaldo(const User& usuario, float cantidad) {
   return usuario.getSaldo() >= cantidad;
 }
 
-bool Pago::realizarPago(Usuario& conductor, Usuario& propietario, float cantidad) {
+bool Pago::realizarPago(User& conductor, User& propietario, float cantidad) {
     if (!comprobarSaldo(conductor, cantidad)) {
         return false;
     }
@@ -16,11 +16,11 @@ bool Pago::realizarPago(Usuario& conductor, Usuario& propietario, float cantidad
 }
 
 // Suma dinero al propietario
-void Pago::sumarIngresos(Usuario& propietario, float cantidad) {
+void Pago::sumarIngresos(User& propietario, float cantidad) {
     propietario.setSaldo(propietario.getSaldo() + cantidad);
 }
 
 // Resta dinero al conductor
-void Pago::restarSaldo(Usuario& conductor, float cantidad) {
+void Pago::restarSaldo(User& conductor, float cantidad) {
     conductor.setSaldo(conductor.getSaldo() - cantidad);
 }

@@ -1,21 +1,21 @@
 #ifndef PAGO_H_
 #define PAGO_H_
 
-#include <usuario.h>
+#include <class_user.h>
 
 class Pago {
  public:
   // Comprueba si hay saldo suficiente
-  bool comprobarSaldo(const Usuario& usuario, float cantidad);
+  bool comprobarSaldo(const User& usuario, float cantidad);
 
   // Realiza el pago (resta dinero al conductor y suma al propietario)
-  bool realizarPago(Usuario& conductor, Usuario& propietario, float cantidad);
+  bool realizarPago(User& conductor, User& propietario, float cantidad);
 
   // Añade ingresos al propietario
-  void sumarIngresos(Usuario& propietario, float cantidad);
+  void sumarIngresos(User& propietario, float cantidad);
 
   // Resta dinero al conductor
-  void restarSaldo(Usuario& conductor, float cantidad);
+  void restarSaldo(User& conductor, float cantidad);
 };
 
 #endif
