@@ -16,6 +16,7 @@ private:
     void menuUsuario();
     void login();
     void registro();
+    void editarPerfil(); 
 
 public:
     App();
