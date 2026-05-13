@@ -1,6 +1,7 @@
 #include "garaje_service.h"
 #include <iostream>
 #include "notificaciones.h"
+#include "archivo.h"
 
 // Dependencias de otros compañeros según la arquitectura del proyecto:
 // #include "archivo.h"
@@ -10,13 +11,11 @@ GarajeService::GarajeService() {
 }
 
 void GarajeService::cargarGarajes() {
-  // Delegado al compañero de Persistencia (Archivos)
-  // garajes = archivo::leerGarajes();
+  garajes = archivo::leerGarajes();
 }
 
 void GarajeService::guardarGarajes() {
-  // Delegado al compañero de Persistencia (Archivos)
-  // archivo::guardarGarajes(garajes);
+  archivo::guardarGarajes(garajes);
 }
 
 void GarajeService::buscarGarajes() const {
