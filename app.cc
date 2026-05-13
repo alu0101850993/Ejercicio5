@@ -136,3 +136,97 @@ void App::editarPerfil() {
 
     archivo::guardarUsuarios(usuarios); 
 }
+
+void App::menuUsuario() {
+    int opcion;
+
+    do {
+        std::cout << "\n--- MENU USUARIO ---\n";
+        std::cout << "1. Ver perfil\n";
+        std::cout << "2. Editar perfil\n";
+
+        if (usuarioActual->getRol() == "conductor") {
+            std::cout << "3. Buscar garajes\n";
+            std::cout << "4. Reservar plaza\n";
+        }
+
+        if (usuarioActual->getRol() == "propietario") {
+            std::cout << "3. Alta garaje\n";
+            std::cout << "4. Configurar garaje\n";
+        }
+
+        std::cout << "0. Logout\nOpcion: ";
+
+        if (!(std::cin >> opcion)) {
+            std::cout << "❌ Entrada invalida\n";
+            limpiarInput();
+            continue;
+        }
+
+        switch(opcion) {
+
+            case 1:
+                usuarioActual->mostrarPerfil();
+                break;
+
+            case 2:
+                editarPerfil();
+                break;
+
+            case 3:
+                if (usuarioActual->getRol() == "conductor") {
+                    garajeService.buscarGarajes();
+                } else {
+                    garajeService.altaGaraje();
+                }
+                break;
+
+            case 4:
+                if (usuarioActual->getRol() == "conductor") {
+                    std::string id;
+                    int tiempo;
+
+                    std::cout << "ID garaje: ";
+                    std::cin >> id;
+
+                    std::cout << "Horas: ";
+
+                    if (!(std::cin >> tiempo) || tiempo <= 0) {
+                        std::cout << "❌ Horas invalidas\n";
+                        limpiarInput();
+                        break;
+                    }
+
+                    for (auto& u : usuarios) {
+                        if (u.getRol() == "propietario") {
+                            garajeService.reservarPlaza(id, tiempo, *usuarioActual, u);
+                            break;
+                        }
+                    }
+                } else {
+                    std::string id;
+                    double precio;
+                    bool disp;
+
+                    std::cout << "ID garaje: ";
+                    std::cin >> id;
+
+                    std::cout << "Precio: ";
+                    std::cin >> precio;
+
+                    std::cout << "Disponible (1/0): ";
+                    std::cin >> disp;
+
+                    garajeService.configurarGaraje(id, precio, disp, *usuarioActual);
+                }
+                break;
+
+            case 0:
+                break;
+
+            default:
+                std::cout << "❌ Opcion no valida\n";
+        }
+
+    } while(opcion != 0);
+}
