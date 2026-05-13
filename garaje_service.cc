@@ -49,6 +49,10 @@ bool GarajeService::reservarPlaza(std::string idNombre, int tiempo, User& conduc
       }
     }
   }
+
+  // 🔴 NUEVO (muy importante)
+  Mensaje notifError("Garaje no encontrado o no disponible.", "Hoy");
+  std::cout << notifError;
   return false;
 }
 
