@@ -4,6 +4,7 @@
 
 namespace archivo {
 
+// ===================== GUARDAR USUARIOS =====================
 void guardarUsuarios(const std::vector<User>& usuarios) {
     std::ofstream file("usuarios.txt");
 
@@ -17,9 +18,14 @@ void guardarUsuarios(const std::vector<User>& usuarios) {
     }
 }
 
+// ===================== LEER USUARIOS =====================
 std::vector<User> leerUsuarios() {
     std::vector<User> usuarios;
     std::ifstream file("usuarios.txt");
+
+    if (!file.is_open()) {
+        return usuarios; // archivo no existe aún
+    }
 
     std::string nombre, correo, password, telefono, rol;
     double saldo;
@@ -31,6 +37,7 @@ std::vector<User> leerUsuarios() {
     return usuarios;
 }
 
+// ===================== GUARDAR GARAJES =====================
 void guardarGarajes(const std::vector<Garaje>& garajes) {
     std::ofstream file("garajes.txt");
 
@@ -44,21 +51,27 @@ void guardarGarajes(const std::vector<Garaje>& garajes) {
     }
 }
 
+// ===================== LEER GARAJES =====================
 std::vector<Garaje> leerGarajes() {
     std::vector<Garaje> garajes;
     std::ifstream file("garajes.txt");
+
+    if (!file.is_open()) {
+        return garajes;
+    }
+
     std::string linea;
 
     while (std::getline(file, linea)) {
         std::stringstream ss(linea);
-        std::string id, ubi, arr, doc;
+
+        std::string id, ubi, dispStr, arr, doc;
         double precio;
         bool disp;
 
         std::getline(ss, id, '|');
         std::getline(ss, ubi, '|');
         ss >> precio;
-        ss.ignore();
         ss >> disp;
         ss.ignore();
         std::getline(ss, arr, '|');
